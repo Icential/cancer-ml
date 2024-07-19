@@ -1,6 +1,6 @@
 
-# classification neural network algorithm for predicting cancer
-# using keras and feature crossing (up to 93% accuracy)
+# classification algorithm for predicting cancer
+# using keras (up to 93% accuracy)
 
 
 # imports here

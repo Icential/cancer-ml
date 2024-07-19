@@ -1,5 +1,5 @@
 
-# classification neural network algorithm for predicting cancer
+# classification algorithm for predicting cancer
 # using keras and feature crossing (up to 95% accuracy)
 
 # now: implement feature crosses 
@@ -88,24 +88,6 @@ def plot_loss(epochs, rmse):
     plt.show()
 
 
-# calculate model accuracy
-def model_accuracy(model, feature_name_one, feature_name_two, label_name):
-
-    # get predictions (probabilities) with x_test (unbiased to trained set)
-    x_test = test[feature_name_one].combine(test[feature_name_two], np.minimum).values.tolist()
-    y_test = test[label_name].values.tolist()
-
-    y_hat = model.predict(x_test)
-
-    # normalize to 0s and 1s
-    y_hat = [0 if val < 0.5 else 1 for val in y_hat]
-
-    # overall accuracy in comparison with the real dataset (y test for no bias to trained set)
-    print('\nAverage overall accuracy of', accuracy_score(y_hat, y_test))
-
-    model.evaluate(x=x_test, y=y_test, batch_size=25)
-
-
 
 """Testing Playground"""
 # labels and features
@@ -132,6 +114,5 @@ feature_layer = tf.keras.layers.DenseFeatures(chosen_features)
 model = build_model(learning_rate, feature_layer)
 trained_weight, trained_bias, epochs, rmse = train_model(model, train, epochs, batch_size, label_name)
 plot_loss(epochs, rmse)
-# model_accuracy(model, feature_name_one, feature_name_two, label_name)
 
 print("\n")
